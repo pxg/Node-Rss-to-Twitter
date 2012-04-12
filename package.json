@@ -1,0 +1,25 @@
+{
+  "author": "Pete X. Graham",
+  "name": "Node-Rss-to-Twitter",
+  "description": "Node.js app to push new rss items to twitter",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pxg/Node-Rss-to-Twitter.git"
+  },
+  "dependencies": {
+    "express" : "2.5.x",
+    "formidable" : "1.0.x",
+    "htmlparser" : "1.7.x",
+    "jsdom" : "0.2.x",
+    "mime" : "1.2.x",
+    "oauth" : "0.9.x",
+    "qs" : "0.4.x",
+    "request" : "2.9.x"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
