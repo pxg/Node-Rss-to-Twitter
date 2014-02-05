@@ -60,7 +60,7 @@ function setLatestPostedItemDate(date){
 function publishToTwitter(item){
     var tweet = item.title + ' ' + item.link;
     console.log('publishing to twitter');
-    oAuth.post('http://api.twitter.com/1/statuses/update.json',
+    oAuth.post('https://api.twitter.com/1.1/statuses/update.json',
     twitterAccessToken,
     twitterAccessTokenSecret,
     {'status': tweet},
