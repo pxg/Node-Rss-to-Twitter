@@ -15,7 +15,8 @@
     "mime" : "1.2.x",
     "oauth" : "0.9.x",
     "qs" : "0.4.x",
-    "request" : "2.9.x"
+    "request" : "2.9.x",
+    "twit" : "" 
   },
   "devDependencies": {},
   "optionalDependencies": {},

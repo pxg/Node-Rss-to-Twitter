@@ -1,27 +1,25 @@
 var request = require('request'),
-    url = require('url'),
-    htmlparser = require('htmlparser'),
-    fs = require('fs'),
-    OAuth = require('oauth').OAuth;
+url = require('url'),
+htmlparser = require('htmlparser'),
+fs = require('fs'),
+Twit = require('twit');
 
 // Config variables
 var rssUrl = 'http://feeds.bbci.co.uk/news/rss.xml';
 var intervalLength = 2000;
 
 // Setup vars for twitter posting
-var twitterConsumerKey = 'add your key here';
-var twitterConsumerSecret = 'add your secret here';
-var twitterAccessToken = 'add your token here';
-var twitterAccessTokenSecret = 'add your token secret here';
+var twitterConsumerKey = '...';
+var twitterConsumerSecret = '...';
+var twitterAccessToken = '...';
+var twitterAccessTokenSecret = '...';
 
-oAuth= new OAuth("http://twitter.com/oauth/request_token",
-    "http://twitter.com/oauth/access_token", 
-    twitterConsumerKey,
-    twitterConsumerSecret, 
-    "1.0A",
-    null,
-    "HMAC-SHA1"
-);
+var twitter = new Twit({
+    consumer_key:         twitterConsumerKey
+  , consumer_secret:      twitterConsumerSecret
+  , access_token:         twitterAccessToken
+  , access_token_secret:  twitterAccessTokenSecret
+});
 
 // Get date of latest posted article
 var lastestPostedItemDate = getLatestPostedItemDate();
@@ -60,15 +58,13 @@ function setLatestPostedItemDate(date){
 function publishToTwitter(item){
     var tweet = item.title + ' ' + item.link;
     console.log('publishing to twitter');
-    oAuth.post('http://api.twitter.com/1/statuses/update.json',
-    twitterAccessToken,
-    twitterAccessTokenSecret,
-    {'status': tweet},
-    function(error, data) {
-         if(error) console.log(require('util').inspect(error))
-         //else console.log('succcess!' + data)
-    });
-    //
+    
+    twitter.post('statuses/update', { status: tweet }, function(err, data, response) {
+		     if (err)
+			 console.log(err);
+		     console.log(data);
+		 });
+
 }
 
 // looping on the server (every second)
